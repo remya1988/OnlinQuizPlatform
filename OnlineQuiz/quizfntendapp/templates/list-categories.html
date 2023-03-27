@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+{%block body_block%}
+<div class="container-fluid  mt-5">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            {% if messages %}
+            {% for m in messages %}
+            {% if m.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <div class="alert alert-info" role="alert" role="alert">
+                <strong>{{ m }}</strong> You should check in on some of those fields below.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+            {% if m.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div class="alert alert-info" role="alert">
+                <strong>{{ m }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <h2 class="text-info">Welcome user {{request.user}}</h2>
+            {%if cat%}
+            <table class="table">
+                <tr>
+                    <th>Category Name</th>
+                    <th></th>
+                </tr>
+                {%for ct in cat%}
+                <tr>
+                    <td>{{ct.name}}</td>
+
+                    <td>
+                            <a href="{%url 'quiz-list' ct.id %}" class="btn btn-outline-info ">Detail</a>
+
+                    </td>
+                </tr>
+                {%endfor%}
+            </table>
+            {%endif%}
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+{%endblock%}

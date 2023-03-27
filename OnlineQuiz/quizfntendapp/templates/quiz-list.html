@@ -1,0 +1,36 @@
+{%extends 'base.html'%}
+{%block body_block%}
+<div class="container  mt-5">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            {%if quiz%}
+            <table class="table">
+                <tr>
+                    <th>Category Name</th>
+                    <th></th>
+                </tr>
+                {%for quiz in quiz%}
+                <tr>
+                    <td>{{quiz.quiz_title}}</td>
+                    <td>Author : {{quiz.user}}</td>
+                    <td>Category : {{quiz.category}}</td>
+
+                    <td>
+                        <a href="{%url 'question-list' quiz.id %}" class="btn btn-outline-warning">View</a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </table>
+            {%endif%}
+
+
+
+
+
+
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>
+{%endblock%}
